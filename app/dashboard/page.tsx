@@ -32,7 +32,7 @@ export default async function DashboardPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 ">
       <div>
         <div className="flex items-center justify-between">
           <div>

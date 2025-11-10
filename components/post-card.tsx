@@ -40,7 +40,7 @@ export function PostCard({ post, showStatus }: PostCardProps) {
           </div>
 
           <Link href={`/post/${post.slug}`}>
-            <h3 className="text-xl md:text-2xl font-serif font-bold text-slate-900 mb-2 hover:text-blue-600 transition group-hover:text-blue-600 line-clamp-2">
+            <h3 className="text-xl md:text-2xl  font-bold text-slate-900 mb-2 hover:text-blue-600 transition group-hover:text-blue-600 line-clamp-2">
               {post.title}
             </h3>
           </Link>

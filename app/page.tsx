@@ -30,7 +30,7 @@ export default async function HomePage() {
         <section className="bg-gradient-to-b from-slate-900 to-slate-800 text-white py-16 md:py-24">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="space-y-6 max-w-2xl">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                 চিন্তাশীল প্রবন্ধ ও বিশ্লেষণ
               </h1>
               <p className="text-lg md:text-xl text-slate-300 leading-relaxed">
@@ -54,7 +54,7 @@ export default async function HomePage() {
         {featuredPost && (
           <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div className="space-y-8">
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900">প্রধান নিবন্ধ</h2>
+              <h2 className="text-3xl md:text-4xl  font-bold text-slate-900">প্রধান নিবন্ধ</h2>
               
               <article className="group border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300">
                 <div className="grid md:grid-cols-3 gap-0">
@@ -76,7 +76,7 @@ export default async function HomePage() {
                     )}
 
                     <Link href={`/post/${featuredPost.slug}`}>
-                      <h3 className="text-2xl md:text-3xl font-serif font-bold text-slate-900 mb-4 hover:text-blue-600 transition line-clamp-3">
+                      <h3 className="text-2xl md:text-3xl  font-bold text-slate-900 mb-4 hover:text-blue-600 transition line-clamp-3">
                         {featuredPost.title}
                       </h3>
                     </Link>
@@ -109,7 +109,7 @@ export default async function HomePage() {
         {/* Latest Posts */}
         {latestPosts && latestPosts.length > 0 ? (
           <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-200">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-10">সর্বশেষ নিবন্ধ</h2>
+            <h2 className="text-3xl md:text-4xl  font-bold text-slate-900 mb-10">সর্বশেষ নিবন্ধ</h2>
             
             {/* Featured Grid Style */}
             <div className="space-y-8">
@@ -132,7 +132,7 @@ export default async function HomePage() {
                       )}
 
                       <Link href={`/post/${post.slug}`}>
-                        <h3 className="text-xl md:text-2xl font-serif font-bold text-slate-900 mb-2 hover:text-blue-600 transition group-hover:text-blue-600 line-clamp-2">
+                        <h3 className="text-xl md:text-2xl  font-bold text-slate-900 mb-2 hover:text-blue-600 transition group-hover:text-blue-600 line-clamp-2">
                           {post.title}
                         </h3>
                       </Link>
@@ -180,7 +180,7 @@ export default async function HomePage() {
         {!session && (
           <section className="bg-slate-50 border-t border-slate-200 py-16">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h3 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-4">নতুন নিবন্ধের খবর পান</h3>
+              <h3 className="text-3xl md:text-4xl  font-bold text-slate-900 mb-4">নতুন নিবন্ধের খবর পান</h3>
               <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
                 আমাদের সর্বশেষ চিন্তাশীল নিবন্ধ এবং বিশ্লেষণ সরাসরি আপনার ইনবক্সে পান।
               </p>
