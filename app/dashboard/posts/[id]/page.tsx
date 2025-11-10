@@ -1,5 +1,3 @@
-"use client"
-
 import { getUserProfile } from "@/lib/auth"
 import { redirect } from "next/navigation"
 import { PostEditor } from "@/components/post-editor"
