@@ -37,13 +37,19 @@ export function Header({ profile }: HeaderProps) {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             <Link href="/" className="text-sm font-medium text-slate-700 hover:text-blue-600 transition">
-              হোমপেজ
+              মাসআলা মাসায়েল
             </Link>
             <Link href="/blogs" className="text-sm font-medium text-slate-700 hover:text-blue-600 transition">
-              ব্লগ
+              কোরআনের আলো
             </Link>
             <Link href="/about" className="text-sm font-medium text-slate-700 hover:text-blue-600 transition">
-              আমাদের সম্পর্কে
+              প্রবন্ধ সমূহ
+            </Link>
+            <Link href="/about" className="text-sm font-medium text-slate-700 hover:text-blue-600 transition">
+              বিষয়ভিত্তিক বয়ান
+            </Link>
+            <Link href="/about" className="text-sm font-medium text-slate-700 hover:text-blue-600 transition">
+            অন্যান্য
             </Link>
           </nav>
 
@@ -76,7 +82,7 @@ export function Header({ profile }: HeaderProps) {
                 <Button asChild variant="outline" size="sm">
                   <Link href="/auth/login">প্রবেশ করুন</Link>
                 </Button>
-                <Button asChild size="sm" className="bg-blue-600 hover:bg-blue-700">
+                <Button asChild size="sm" className="bg-gradient-to-r from-blue-600 to-purple-600">
                   <Link href="/auth/sign-up">যোগ দিন</Link>
                 </Button>
               </>

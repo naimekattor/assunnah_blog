@@ -41,7 +41,7 @@ export default async function HomePage() {
                   <Button asChild size="lg" className="bg-white text-slate-900 hover:bg-slate-100 font-semibold">
                     <Link href="/auth/sign-up">লেখক হিসেবে যোগ দিন</Link>
                   </Button>
-                  <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+                  <Button asChild variant="outline" size="lg" className="border-white text-slate-900 hover:bg-purple-600 hover:text-white hover:border-none">
                     <Link href="/auth/login">প্রবেশ করুন</Link>
                   </Button>
                 </div>
@@ -190,7 +190,7 @@ export default async function HomePage() {
                   placeholder="আপনার ইমেইল..."
                   className="flex-1 px-4 py-3 border border-slate-300 rounded focus:outline-none focus:border-blue-500 text-slate-900 placeholder-slate-500"
                 />
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold">সাবস্ক্রাইব করুন</Button>
+                <Button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold">সাবস্ক্রাইব করুন</Button>
               </div>
             </div>
           </section>
@@ -230,7 +230,7 @@ export default async function HomePage() {
               </div>
             </div>
             <div className="border-t border-slate-800 pt-8 text-center text-sm">
-              <p>&copy; ২০২৫ চিন্তাশীল প্রবন্ধ। সর্বাধিকার সংরক্ষিত।</p>
+              <p>&copy; ২০২৫ সুন্নাহ প্রবন্ধ। সর্বাধিকার সংরক্ষিত। NaimEkattor</p>
             </div>
           </div>
         </footer>
