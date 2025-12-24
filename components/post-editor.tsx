@@ -76,6 +76,8 @@ export function PostEditor({ initialPost, onSubmit }: PostEditorProps) {
 
           {error && <p className="text-sm text-destructive">{error}</p>}
 
+          
+
           <div className="flex gap-4">
             <Button type="submit" disabled={isLoading}>
               {isLoading ? "Saving..." : initialPost ? "Update Post" : "Create Post"}

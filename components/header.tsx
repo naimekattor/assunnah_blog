@@ -36,19 +36,19 @@ export function Header({ profile }: HeaderProps) {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            <Link href="/" className="text-sm font-medium text-slate-700 hover:text-blue-600 transition">
+            <Link href="/" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
               মাসআলা মাসায়েল
             </Link>
-            <Link href="/blogs" className="text-sm font-medium text-slate-700 hover:text-blue-600 transition">
+            <Link href="/blogs" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
               কোরআনের আলো
             </Link>
-            <Link href="/about" className="text-sm font-medium text-slate-700 hover:text-blue-600 transition">
+            <Link href="/about" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
               প্রবন্ধ সমূহ
             </Link>
-            <Link href="/about" className="text-sm font-medium text-slate-700 hover:text-blue-600 transition">
+            <Link href="/about" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
               বিষয়ভিত্তিক বয়ান
             </Link>
-            <Link href="/about" className="text-sm font-medium text-slate-700 hover:text-blue-600 transition">
+            <Link href="/about" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
             অন্যান্য
             </Link>
           </nav>
@@ -57,16 +57,16 @@ export function Header({ profile }: HeaderProps) {
           <div className="hidden md:flex items-center gap-4">
             {profile ? (
               <>
-                <Link href="/dashboard" className="text-sm font-medium text-slate-700 hover:text-blue-600 transition">
+                <Link href="/dashboard" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
                   ড্যাশবোর্ড
                 </Link>
                 {profile.role === "moderator" || profile.role === "admin" ? (
-                  <Link href="/moderation" className="text-sm font-medium text-slate-700 hover:text-blue-600 transition">
+                  <Link href="/moderation" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
                     মডারেশন
                   </Link>
                 ) : null}
                 {profile.role === "admin" ? (
-                  <Link href="/admin" className="text-sm font-medium text-slate-700 hover:text-blue-600 transition">
+                  <Link href="/admin" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
                     অ্যাডমিন
                   </Link>
                 ) : null}
@@ -79,12 +79,12 @@ export function Header({ profile }: HeaderProps) {
               </>
             ) : (
               <>
-                <Button asChild variant="outline" size="sm">
+                {/* <Button asChild variant="outline" size="sm">
                   <Link href="/auth/login">প্রবেশ করুন</Link>
                 </Button>
                 <Button asChild size="sm" className="bg-gradient-to-r from-blue-600 to-purple-600">
                   <Link href="/auth/sign-up">যোগ দিন</Link>
-                </Button>
+                </Button> */}
               </>
             )}
           </div>

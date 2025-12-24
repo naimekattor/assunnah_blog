@@ -38,7 +38,7 @@ export default async function HomePage() {
               <p className="text-lg md:text-xl text-slate-300 leading-relaxed">
                 গভীর চিন্তাভাবনা এবং মৌলিক বিশ্লেষণের মাধ্যমে আমরা সমসাময়িক বিষয়গুলি তুলে ধরি।
               </p>
-              {!session && (
+              {/* {!session && (
                 <div className="flex flex-wrap gap-4 pt-4">
                   <Button asChild size="lg" className="bg-white text-slate-900 hover:bg-slate-100 font-semibold">
                     <Link href="/auth/sign-up">লেখক হিসেবে যোগ দিন</Link>
@@ -47,7 +47,7 @@ export default async function HomePage() {
                     <Link href="/auth/login">প্রবেশ করুন</Link>
                   </Button>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </section>
