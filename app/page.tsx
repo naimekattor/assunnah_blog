@@ -5,6 +5,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Header } from "@/components/header"
 import { PostCard } from "@/components/post-card"
+import KeepAlive from "@/components/KeepAlive"
 
 export default async function HomePage() {
   const session = await getSession()
@@ -24,6 +25,7 @@ export default async function HomePage() {
 
   return (
     <>
+    <KeepAlive />
       <Header profile={profile} />
       <main className="min-h-screen bg-white">
         {/* Hero Section */}
