@@ -8,9 +8,21 @@ export async function GET(request: NextRequest) {
 
   const searchParams = request.nextUrl.searchParams
   const status = searchParams.get("status")
+  const category = searchParams.get("category")
 
-  // We'll handle author info joining in the application
-  let query = supabase.from("posts").select("*, author_id")
+  // Join with categories to get category information
+  let query = supabase
+    .from("posts")
+    .select(`
+      *,
+      author_id,
+      categories (
+        id,
+        name_en,
+        name_bn,
+        slug
+      )
+    `)
 
   if (status === "published") {
     query = query.eq("status", "published")
@@ -20,6 +32,19 @@ export async function GET(request: NextRequest) {
     query = query.eq("author_id", profile.id)
   } else {
     query = query.eq("status", "published")
+  }
+
+  // Filter by category slug if provided
+  if (category) {
+    const { data: categoryData } = await supabase
+      .from("categories")
+      .select("id")
+      .eq("slug", category)
+      .single()
+
+    if (categoryData) {
+      query = query.eq("category_id", categoryData.id)
+    }
   }
 
   const { data, error } = await query.order("created_at", { ascending: false })

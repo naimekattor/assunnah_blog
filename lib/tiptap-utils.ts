@@ -374,17 +374,60 @@ export const handleImageUpload = async (
     )
   }
 
-  // For demo/testing: Simulate upload progress. In production, replace the following code
-  // with your own upload implementation.
-  for (let progress = 0; progress <= 100; progress += 10) {
-    if (abortSignal?.aborted) {
-      throw new Error("Upload cancelled")
-    }
-    await new Promise((resolve) => setTimeout(resolve, 500))
-    onProgress?.({ progress })
-  }
+  // Use XMLHttpRequest to track upload progress (fetch doesn't support progress for uploads easily)
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest()
+    const formData = new FormData()
+    formData.append("file", file)
 
-  return "/images/tiptap-ui-placeholder-image.jpg"
+    xhr.open("POST", "/api/upload/image")
+
+    xhr.upload.onprogress = (event) => {
+      if (event.lengthComputable && onProgress) {
+        const progress = Math.round((event.loaded / event.total) * 100)
+        onProgress({ progress })
+      }
+    }
+
+    xhr.onload = () => {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        try {
+          const response = JSON.parse(xhr.responseText)
+          if (response.url) {
+            resolve(response.url)
+          } else {
+            console.error("Upload failed details:", response)
+            reject(new Error(response.error || "Upload failed"))
+          }
+        } catch (e) {
+          reject(new Error("Invalid server response"))
+        }
+      } else {
+        try {
+          const response = JSON.parse(xhr.responseText)
+          reject(new Error(response.error || `Upload failed with status ${xhr.status}`))
+        } catch (e) {
+          reject(new Error(`Upload failed with status ${xhr.status}`))
+        }
+      }
+    }
+
+    xhr.onerror = () => {
+      reject(new Error("Network error during upload"))
+    }
+
+    xhr.onabort = () => {
+      reject(new Error("Upload cancelled"))
+    }
+
+    if (abortSignal) {
+      abortSignal.addEventListener("abort", () => {
+        xhr.abort()
+      })
+    }
+
+    xhr.send(formData)
+  })
 }
 
 type ProtocolOptions = {

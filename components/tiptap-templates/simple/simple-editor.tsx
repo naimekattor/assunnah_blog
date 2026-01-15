@@ -183,7 +183,13 @@ const MobileToolbarContent = ({
   </>
 )
 
-export function SimpleEditor() {
+export function SimpleEditor({
+  initialContent,
+  onChange,
+}: {
+  initialContent?: string
+  onChange?: (html: string) => void
+} = {}) {
   const isMobile = useIsBreakpoint()
   const { height } = useWindowSize()
   const [mobileView, setMobileView] = useState<"main" | "highlighter" | "link">(
@@ -228,7 +234,12 @@ export function SimpleEditor() {
         onError: (error) => console.error("Upload failed:", error),
       }),
     ],
-    content,
+    content: initialContent || content,
+    onUpdate: ({ editor }) => {
+      if (onChange) {
+        onChange(editor.getHTML())
+      }
+    },
   })
 
   const rect = useCursorVisibility({
@@ -247,13 +258,6 @@ export function SimpleEditor() {
       <EditorContext.Provider value={{ editor }}>
         <Toolbar
           ref={toolbarRef}
-          style={{
-            ...(isMobile
-              ? {
-                  bottom: `calc(100% - ${height - rect.y}px)`,
-                }
-              : {}),
-          }}
         >
           {mobileView === "main" ? (
             <MainToolbarContent

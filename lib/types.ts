@@ -14,6 +14,9 @@ export interface Post {
   title: string
   slug: string
   content: string
+  excerpt?: string
+  category_id?: string
+  author_email?: string
   status: PostStatus
   created_at: string
   published_at: string | null

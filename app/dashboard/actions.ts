@@ -4,7 +4,12 @@ import { createClient } from "@/lib/supabase/server"
 import { getUserProfile } from "@/lib/auth"
 import { generateUniqueSlug } from "@/lib/utils/slug"
 
-export async function createPost(title: string, content: string) {
+export async function createPost(
+  title: string,
+  content: string,
+  categoryId: string,
+  excerpt: string
+) {
   const profile = await getUserProfile()
   if (!profile) {
     throw new Error("Unauthorized")
@@ -19,6 +24,8 @@ export async function createPost(title: string, content: string) {
       author_id: profile.id,
       title,
       content,
+      category_id: categoryId,
+      excerpt,
       slug,
       status: "pending",
     })
@@ -32,7 +39,13 @@ export async function createPost(title: string, content: string) {
   return data
 }
 
-export async function updatePost(id: string, title: string, content: string) {
+export async function updatePost(
+  id: string,
+  title: string,
+  content: string,
+  categoryId: string,
+  excerpt: string
+) {
   const profile = await getUserProfile()
   if (!profile) {
     throw new Error("Unauthorized")
@@ -55,6 +68,8 @@ export async function updatePost(id: string, title: string, content: string) {
     .update({
       title,
       content,
+      category_id: categoryId,
+      excerpt,
       updated_at: new Date().toISOString(),
     })
     .eq("id", id)

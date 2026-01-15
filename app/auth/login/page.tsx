@@ -69,6 +69,14 @@ export default function LoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
+              <div className="flex items-center justify-end">
+                <Link 
+                  href="/auth/forgot-password" 
+                  className="text-sm font-medium text-blue-600 hover:text-blue-500 hover:underline"
+                >
+                  Forgot password?
+                </Link>
+              </div>
               {error && <p className="text-sm text-destructive">{error}</p>}
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? "Signing in..." : "Sign in"}

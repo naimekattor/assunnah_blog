@@ -36,19 +36,19 @@ export function Header({ profile }: HeaderProps) {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            <Link href="/" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
+            <Link href="/blogs?category=masala-masayel" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
               মাসআলা মাসায়েল
             </Link>
-            <Link href="/blogs" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
+            <Link href="/blogs?category=quraner-alo" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
               কোরআনের আলো
             </Link>
-            <Link href="/about" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
+            <Link href="/blogs?category=probondho-somuho" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
               প্রবন্ধ সমূহ
             </Link>
-            <Link href="/about" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
+            <Link href="/blogs?category=bishoy-bhittik-boyan" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
               বিষয়ভিত্তিক বয়ান
             </Link>
-            <Link href="/about" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
+            <Link href="/blogs?category=others" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
             অন্যান্য
             </Link>
           </nav>
@@ -105,11 +105,20 @@ export function Header({ profile }: HeaderProps) {
             <Link href="/" className="block px-4 py-2 text-sm font-medium hover:bg-slate-100 rounded transition">
               হোমপেজ
             </Link>
-            <Link href="/blogs" className="block px-4 py-2 text-sm font-medium hover:bg-slate-100 rounded transition">
-              ব্লগ
+            <Link href="/blogs?category=masala-masayel" className="block px-4 py-2 text-sm font-medium hover:bg-slate-100 rounded transition">
+              মাসআলা মাসায়েল
             </Link>
-            <Link href="/about" className="block px-4 py-2 text-sm font-medium hover:bg-slate-100 rounded transition">
-              আমাদের সম্পর্কে
+            <Link href="/blogs?category=quraner-alo" className="block px-4 py-2 text-sm font-medium hover:bg-slate-100 rounded transition">
+              কোরআনের আলো
+            </Link>
+            <Link href="/blogs?category=probondho-somuho" className="block px-4 py-2 text-sm font-medium hover:bg-slate-100 rounded transition">
+              প্রবন্ধ সমূহ
+            </Link>
+            <Link href="/blogs?category=bishoy-bhittik-boyan" className="block px-4 py-2 text-sm font-medium hover:bg-slate-100 rounded transition">
+              বিষয়ভিত্তিক বয়ান
+            </Link>
+            <Link href="/blogs?category=others" className="block px-4 py-2 text-sm font-medium hover:bg-slate-100 rounded transition">
+              অন্যান্য
             </Link>
             {profile ? (
               <>
