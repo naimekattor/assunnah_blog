@@ -1,9 +1,8 @@
+import { EditPostClient } from "./client"
 import { getUserProfile } from "@/lib/auth"
 import { redirect } from "next/navigation"
-import { PostEditor } from "@/components/post-editor"
 import { notFound } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
-import { updatePost } from "@/app/dashboard/actions"
 
 interface PostPageProps {
   params: Promise<{ id: string }>
@@ -26,12 +25,7 @@ export default async function EditPostPage({ params }: PostPageProps) {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <PostEditor
-        initialPost={post}
-        onSubmit={async (data) => {
-          await updatePost(id, data.title, data.content)
-        }}
-      />
+      <EditPostClient post={post} />
     </div>
   )
 }

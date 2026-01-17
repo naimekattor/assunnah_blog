@@ -51,7 +51,9 @@ export function ModerationTable({ posts, onApprove, onReject }: ModerationTableP
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <p className="text-sm text-muted-foreground line-clamp-3">{post.content}</p>
+              <p className="text-sm text-muted-foreground line-clamp-3">
+                {post.content?.replace(/<[^>]*>/g, "")}
+              </p>
               <div className="flex gap-2">
                 <Button
                   size="sm"

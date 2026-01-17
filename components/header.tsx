@@ -2,11 +2,13 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname, useSearchParams } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 import { Menu, X } from "lucide-react"
 import type { Profile } from "@/lib/types"
+import Image from "next/image"
 
 interface HeaderProps {
   profile?: Profile | null
@@ -14,8 +16,22 @@ interface HeaderProps {
 
 export function Header({ profile }: HeaderProps) {
   const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
   const [isLoading, setIsLoading] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const isActive = (href: string) => {
+    const [path, query] = href.split('?')
+    if (pathname !== path) return false
+    if (!query) return true
+    
+    const params = new URLSearchParams(query)
+    for (const [key, value] of params.entries()) {
+      if (searchParams.get(key) !== value) return false
+    }
+    return true
+  }
 
   const handleLogout = async () => {
     setIsLoading(true)
@@ -26,29 +42,44 @@ export function Header({ profile }: HeaderProps) {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 py-3">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Sunnah
+          <Link href="/" className="text-2xl font-bold">
+            <Image src={"/logo2.png"} width={100} height={60} alt="logo"/>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            <Link href="/blogs?category=masala-masayel" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
+            <Link 
+              href="/blogs?category=masala-masayel" 
+              className={cn("text-lg font-medium transition", isActive("/blogs?category=masala-masayel") ? "text-primary font-bold" : "text-slate-700 hover:text-primary")}
+            >
               মাসআলা মাসায়েল
             </Link>
-            <Link href="/blogs?category=quraner-alo" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
+            <Link 
+              href="/blogs?category=quraner-alo" 
+              className={cn("text-lg font-medium transition", isActive("/blogs?category=quraner-alo") ? "text-primary font-bold" : "text-slate-700 hover:text-primary")}
+            >
               কোরআনের আলো
             </Link>
-            <Link href="/blogs?category=probondho-somuho" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
+            <Link 
+              href="/blogs?category=probondho-somuho" 
+              className={cn("text-lg font-medium transition", isActive("/blogs?category=probondho-somuho") ? "text-primary font-bold" : "text-slate-700 hover:text-primary")}
+            >
               প্রবন্ধ সমূহ
             </Link>
-            <Link href="/blogs?category=bishoy-bhittik-boyan" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
+            <Link 
+              href="/blogs?category=bishoy-bhittik-boyan" 
+              className={cn("text-lg font-medium transition", isActive("/blogs?category=bishoy-bhittik-boyan") ? "text-primary font-bold" : "text-slate-700 hover:text-primary")}
+            >
               বিষয়ভিত্তিক বয়ান
             </Link>
-            <Link href="/blogs?category=others" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
+            <Link 
+              href="/blogs?category=others" 
+              className={cn("text-lg font-medium transition", isActive("/blogs?category=others") ? "text-primary font-bold" : "text-slate-700 hover:text-primary")}
+            >
             অন্যান্য
             </Link>
           </nav>
@@ -70,7 +101,7 @@ export function Header({ profile }: HeaderProps) {
                     অ্যাডমিন
                   </Link>
                 ) : null}
-                <span className="px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded-full">
+                <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">
                   {profile.role}
                 </span>
                 <Button variant="outline" size="sm" onClick={handleLogout} disabled={isLoading}>
@@ -150,7 +181,7 @@ export function Header({ profile }: HeaderProps) {
                 <Button asChild variant="outline" size="sm" className="w-full">
                   <Link href="/auth/login">প্রবেশ করুন</Link>
                 </Button>
-                <Button asChild size="sm" className="w-full bg-blue-600 hover:bg-blue-700">
+                <Button asChild size="sm" className="w-full bg-primary hover:bg-primary/90">
                   <Link href="/auth/sign-up">যোগ দিন</Link>
                 </Button>
               </>

@@ -1,6 +1,7 @@
-import { createClient } from "@/lib/supabase/server"
+import { createClient, createAdminClient } from "@/lib/supabase/server"
 import { getUserProfile } from "@/lib/auth"
 import { redirect } from "next/navigation"
+import { revalidatePath } from "next/cache"
 import { ModerationTable } from "@/components/moderation-table"
 
 async function approvePost(id: string) {
@@ -11,7 +12,7 @@ async function approvePost(id: string) {
     throw new Error("Unauthorized")
   }
 
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   const { error } = await supabase
     .from("posts")
     .update({
@@ -23,6 +24,8 @@ async function approvePost(id: string) {
   if (error) {
     throw new Error(error.message)
   }
+
+  revalidatePath("/moderation")
 }
 
 async function rejectPost(id: string) {
@@ -33,7 +36,7 @@ async function rejectPost(id: string) {
     throw new Error("Unauthorized")
   }
 
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   const { error } = await supabase
     .from("posts")
     .update({
@@ -44,6 +47,8 @@ async function rejectPost(id: string) {
   if (error) {
     throw new Error(error.message)
   }
+
+  revalidatePath("/moderation")
 }
 
 export default async function ModerationPage() {

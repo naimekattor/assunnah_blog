@@ -147,9 +147,7 @@ const MainToolbarContent = ({
 
       {isMobile && <ToolbarSeparator />}
 
-      <ToolbarGroup>
-        <ThemeToggle />
-      </ToolbarGroup>
+      {isMobile && <ToolbarSeparator />}
     </>
   )
 }

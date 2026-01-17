@@ -74,7 +74,10 @@ export default async function PostPage({ params }: PostPageProps) {
             </div>
 
             <article className="prose prose-sm max-w-none">
-              <div className="text-base leading-relaxed whitespace-pre-wrap text-foreground">{post.content}</div>
+              <div 
+                className="text-base leading-relaxed text-foreground"
+                dangerouslySetInnerHTML={{ __html: post.content }}
+              />
             </article>
 
             {(isAuthor || isMod) && post.status === "pending" && (

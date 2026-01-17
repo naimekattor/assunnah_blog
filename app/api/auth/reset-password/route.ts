@@ -1,9 +1,9 @@
-import { createClient } from "@/lib/supabase/server"
+import { createAdminClient } from "@/lib/supabase/server"
 import { type NextRequest, NextResponse } from "next/server"
 
 export async function POST(request: NextRequest) {
     try {
-        const supabase = await createClient()
+        const supabase = createAdminClient()
         const { token, password } = await request.json()
 
         if (!token || !password) {
@@ -38,10 +38,10 @@ export async function POST(request: NextRequest) {
         }
 
         // Update the user's password using Supabase Auth Admin API
-        // Note: This requires service role key, so we'll use the regular update
-        const { error: updateError } = await supabase.auth.updateUser({
-            password: password,
-        })
+        const { error: updateError } = await supabase.auth.admin.updateUserById(
+            resetToken.user_id,
+            { password: password }
+        )
 
         if (updateError) {
             console.error("Error updating password:", updateError)

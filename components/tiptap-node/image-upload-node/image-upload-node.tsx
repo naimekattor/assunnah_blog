@@ -26,6 +26,10 @@ export interface FileItem {
    * @default "uploading"
    */
   status: "uploading" | "success" | "error"
+  /**
+   * Error message if upload failed
+   */
+  error?: string
 
   /**
    * URL to the uploaded file, available after successful upload
@@ -140,16 +144,18 @@ function useFileUpload(options: UploadOptions) {
 
       return null
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Upload failed"
+
       if (!abortController.signal.aborted) {
         setFileItems((prev) =>
           prev.map((item) =>
             item.id === fileId
-              ? { ...item, status: "error", progress: 0 }
+              ? { ...item, status: "error", progress: 0, error: errorMessage }
               : item
           )
         )
         options.onError?.(
-          error instanceof Error ? error : new Error("Upload failed")
+          error instanceof Error ? error : new Error(errorMessage)
         )
       }
       return null
@@ -364,7 +370,7 @@ const ImageUploadPreview: React.FC<ImageUploadPreviewProps> = ({
   }
 
   return (
-    <div className="tiptap-image-upload-preview">
+    <div className={`tiptap-image-upload-preview ${fileItem.status === "error" ? "border-red-500 bg-red-50" : ""}`}>
       {fileItem.status === "uploading" && (
         <div
           className="tiptap-image-upload-progress"
@@ -375,14 +381,18 @@ const ImageUploadPreview: React.FC<ImageUploadPreviewProps> = ({
       <div className="tiptap-image-upload-preview-content">
         <div className="tiptap-image-upload-file-info">
           <div className="tiptap-image-upload-file-icon">
-            <CloudUploadIcon />
+            {fileItem.status === "error" ? (
+               <div className="text-red-500 font-bold text-xl">!</div> 
+             ) : (
+                <CloudUploadIcon />
+             )}
           </div>
           <div className="tiptap-image-upload-details">
-            <span className="tiptap-image-upload-text">
+            <span className={`tiptap-image-upload-text ${fileItem.status === "error" ? "text-red-700" : ""}`}>
               {fileItem.file.name}
             </span>
-            <span className="tiptap-image-upload-subtext">
-              {formatFileSize(fileItem.file.size)}
+            <span className={`tiptap-image-upload-subtext ${fileItem.status === "error" ? "text-red-600" : ""}`}>
+              {fileItem.status === "error" ? fileItem.error || "Upload failed" : formatFileSize(fileItem.file.size)}
             </span>
           </div>
         </div>
@@ -463,7 +473,6 @@ export const ImageUploadNode: React.FC<NodeViewProps> = (props) => {
           return {
             type: extension.options.type,
             attrs: {
-              ...extension.options,
               src: url,
               alt: filename,
               title: filename,

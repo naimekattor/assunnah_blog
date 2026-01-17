@@ -1,7 +1,6 @@
 import { getUserProfile } from "@/lib/auth"
 import { redirect } from "next/navigation"
-import { PostEditor } from "@/components/post-editor"
-import { createPost } from "@/app/dashboard/actions"
+import { CreatePostClient } from "./client"
 
 export default async function CreatePostPage() {
   const profile = await getUserProfile()
@@ -9,17 +8,7 @@ export default async function CreatePostPage() {
 
   return (
     <div className=" mx-auto">
-      <PostEditor
-        onSubmit={async (data) => {
-          "use server"
-          await createPost(
-            data.title, 
-            data.content, 
-            data.categoryId, 
-            data.excerpt
-          )
-        }}
-      />
+      <CreatePostClient />
     </div>
   )
 }

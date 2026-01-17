@@ -1,11 +1,14 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Noto_Serif_Bengali } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+const notoSerifBengali = Noto_Serif_Bengali({ 
+  subsets: ["bengali"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-noto-serif-bengali",
+})
 
 export const metadata: Metadata = {
   title: "Blog Platform",
@@ -19,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={``}>
+    <html lang="bn">
+      <body className={notoSerifBengali.className}>
         {children}
         <Analytics />
       </body>
