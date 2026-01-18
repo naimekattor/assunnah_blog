@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
         const { error: resetError } = await supabase.auth.resetPasswordForEmail(
             email.toLowerCase().trim(),
             {
-                redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/auth/reset-password?token=${token}`,
+                redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/reset-password?token=${token}`,
             }
         )
 
