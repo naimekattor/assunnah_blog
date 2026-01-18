@@ -6,7 +6,7 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Search } from "lucide-react"
 import type { Profile } from "@/lib/types"
 import Image from "next/image"
 
@@ -20,6 +20,7 @@ export function Header({ profile }: HeaderProps) {
   const searchParams = useSearchParams()
   const [isLoading, setIsLoading] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
 
   const isActive = (href: string) => {
     const [path, query] = href.split('?')
@@ -42,7 +43,12 @@ export function Header({ profile }: HeaderProps) {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 py-3">
+    <header className="sticky top-0 z-50
+    bg-white/60
+    backdrop-blur-xl backdrop-saturate-200
+    
+    shadow-[0_8px_30px_rgba(0,0,0,0.05)]
+    py-3">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -120,15 +126,48 @@ export function Header({ profile }: HeaderProps) {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 text-slate-700"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="মেনু"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Actions */}
+          <div className="flex items-center gap-2 md:hidden">
+            <button
+              className="p-2 text-slate-700 hover:bg-slate-100 rounded-full transition"
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+              aria-label="অনুসন্ধান"
+            >
+              <Search size={24} />
+            </button>
+            <button
+              className="p-2 text-slate-700 hover:bg-slate-100 rounded-full transition"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="মেনু"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Search Bar */}
+        {isSearchOpen && (
+          <div className="md:hidden py-3 px-1 pb-4 animate-in slide-in-from-top-2 fade-in-20">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="অনুসন্ধান করুন..."
+                className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-full focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary bg-slate-50"
+                autoFocus
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    const target = e.target as HTMLInputElement
+                    if (target.value.trim()) {
+                      router.push(`/blogs?search=${encodeURIComponent(target.value.trim())}`)
+                      setIsSearchOpen(false)
+                    }
+                  }
+                }}
+              />
+              <Search className="absolute left-3 top-2.5 text-slate-400 h-5 w-5" />
+            </div>
+          </div>
+        )}
 
         {/* Mobile Navigation */}
         {isMenuOpen && (

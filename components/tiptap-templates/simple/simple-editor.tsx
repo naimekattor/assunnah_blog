@@ -232,7 +232,7 @@ export function SimpleEditor({
         onError: (error) => console.error("Upload failed:", error),
       }),
     ],
-    content: initialContent || content,
+    content: initialContent || "",
     onUpdate: ({ editor }) => {
       if (onChange) {
         onChange(editor.getHTML())

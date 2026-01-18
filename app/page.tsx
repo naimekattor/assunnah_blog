@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Header } from "@/components/header";
 import { PostCard } from "@/components/post-card";
 import KeepAlive from "@/components/KeepAlive";
+import { HeroSearch } from "@/components/hero-search";
+import { Footer } from "@/components/footer";
 
 export default async function HomePage() {
   const session = await getSession();
@@ -24,10 +26,10 @@ export default async function HomePage() {
   const latestPosts = posts?.slice(1) || [];
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <KeepAlive />
       <Header profile={profile} />
-      <main className="min-h-screen bg-white">
+      <main className="flex-1 bg-white">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-emerald-950 via-teal-900 to-emerald-950 text-white py-24 md:py-32 overflow-hidden">
           {/* Enhanced Islamic Geometric & Arabesque Overlay - low opacity for serenity */}
@@ -74,9 +76,9 @@ export default async function HomePage() {
           </div>
 
           <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10 relative z-10">
-            <div className="space-y-10 max-w-6xl mx-auto text-center md:text-left">
+            <div className="space-y-10 max-w-6xl mx-auto text-center">
               {/* Enhanced Bismillah with beautiful Arabic font & gold glow */}
-              <div className="flex items-center justify-center md:justify-start gap-4">
+              <div className="flex items-center justify-center gap-4">
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-emerald-700/30 to-teal-700/30 backdrop-blur-md flex items-center justify-center border border-emerald-400/30 shadow-lg shadow-emerald-900/40">
                   <svg
                     className="w-8 h-8 text-emerald-200"
@@ -102,73 +104,17 @@ export default async function HomePage() {
                 <h1 className="text-5xl md:text-6xl lg:text-6xl font-bold leading-tight bg-gradient-to-r from-white via-amber-100 to-emerald-100 bg-clip-text text-transparent drop-shadow-2xl">
                   ইসলামিক জ্ঞান ও দিকনির্দেশনা
                 </h1>
-                <div className="w-32 h-1.5 bg-gradient-to-r from-amber-400 via-emerald-400 to-teal-400 rounded-full mx-auto md:mx-0"></div>
+                <div className="w-32 h-1.5 bg-gradient-to-r from-amber-400 via-emerald-400 to-teal-400 rounded-full mx-auto"></div>
               </div>
 
               {/* Description - more poetic & spiritual */}
-              <p className="text-xl md:text-2xl text-emerald-100/90 leading-relaxed font-light max-w-3xl">
+              <p className="text-xl md:text-2xl text-emerald-100/90 leading-relaxed font-light ">
                 কুরআন ও সুন্নাহর নূরে আলোকিত পথে চলুন। দুনিয়ার সৌন্দর্যের
                 পাশাপাশি আখিরাতের প্রস্তুতি গ্রহণ করুন। আল্লাহর রহমত ও
                 মাগফিরাতের দিকে ফিরে আসুন।
               </p>
 
-              {/* Features - elegant pills with subtle hover/glow */}
-              <div className="flex flex-wrap justify-center md:justify-start gap-5 pt-6">
-                <div className="flex items-center gap-3 bg-gradient-to-r from-emerald-800/40 to-teal-800/40 backdrop-blur-lg px-6 py-3 rounded-2xl border border-emerald-500/30 hover:border-emerald-400/50 transition-all duration-300 shadow-md">
-                  <svg
-                    className="w-6 h-6 text-amber-300"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                    />
-                  </svg>
-                  <span className="text-base font-medium text-emerald-50">
-                    কুরআন ও হাদিসের শিক্ষা
-                  </span>
-                </div>
-                <div className="flex items-center gap-3 bg-gradient-to-r from-emerald-800/40 to-teal-800/40 backdrop-blur-lg px-6 py-3 rounded-2xl border border-emerald-500/30 hover:border-emerald-400/50 transition-all duration-300 shadow-md">
-                  <svg
-                    className="w-6 h-6 text-amber-300"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                    />
-                  </svg>
-                  <span className="text-base font-medium text-emerald-50">
-                    আমলযোগ্য জ্ঞান
-                  </span>
-                </div>
-                <div className="flex items-center gap-3 bg-gradient-to-r from-emerald-800/40 to-teal-800/40 backdrop-blur-lg px-6 py-3 rounded-2xl border border-emerald-500/30 hover:border-emerald-400/50 transition-all duration-300 shadow-md">
-                  <svg
-                    className="w-6 h-6 text-amber-300"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                    />
-                  </svg>
-                  <span className="text-base font-medium text-emerald-50">
-                    আখিরাতের প্রস্তুতি
-                  </span>
-                </div>
-              </div>
+              <HeroSearch />
             </div>
           </div>
 
@@ -195,20 +141,194 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* Featured Post */}
+        {/* Featured Post - Modern Magazine Style */}
         {featuredPost && (
           <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div className="space-y-8">
-              <h2 className="text-3xl md:text-4xl  font-bold text-slate-900">
-                প্রধান নিবন্ধ
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-1.5 h-8 bg-emerald-500 rounded-full"></div>
+              <h2 className="text-xl md:text-2xl font-semibold text-slate-900">
+                সম্পাদকীয়
               </h2>
+            </div>
 
-              <article className="group border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300">
-                <div className="grid md:grid-cols-3 gap-0">
-                  {/* Image */}
-                  <div className="md:col-span-1 h-64 md:h-full bg-slate-100 overflow-hidden relative">
+            <article className="group relative bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100 hover:shadow-2xl transition-all duration-500">
+              <div className="grid lg:grid-cols-2 gap-0">
+                {/* Image Side */}
+                <div className="h-72 lg:h-auto bg-slate-100 overflow-hidden relative">
+                  <div className="absolute top-4 left-4 z-10">
+                    {featuredPost.category && (
+                      <span className="px-3 py-1.5 bg-white/90 backdrop-blur text-emerald-700 font-bold text-xs uppercase tracking-wider rounded-lg shadow-sm">
+                        {featuredPost.category}
+                      </span>
+                    )}
+                  </div>
+                  {(() => {
+                    const firstImageMatch = featuredPost.content?.match(
+                      /<img[^>]+src="([^">]+)"/
+                    );
+                    const firstImage = firstImageMatch
+                      ? firstImageMatch[1]
+                      : null;
+                    return firstImage ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={firstImage}
+                        alt={featuredPost.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center">
+                        <span className="text-slate-500 text-sm">
+                          প্রধান ইমেজ নেই
+                        </span>
+                      </div>
+                    );
+                  })()}
+                  {/* Overlay Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+                </div>
+
+                {/* Content Side */}
+                <div className="p-8 lg:p-12 flex flex-col justify-center bg-white relative">
+                  {/* Decorative background element */}
+                  <div className="absolute top-0 right-0 p-12 opacity-5">
+                    <svg
+                      className="w-32 h-32"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M14.408 24h-13.408v-24h10.189c3.279 0 2.552 9.475 3.219 14.453.667-4.978-.06-14.453 3.219-14.453h10.189v24h-13.408v-11.662l-6.592 11.662zm-5.408-14.73l6-10.617c.521 3.743.028 10.347 1 10.347s.479-6.604 1-10.347l6 10.617v-8.27h-2.189c-2.433 0-1.875 7.031-2.311 10.741-.436-3.71-.122-10.741-2.311-10.741h-7.189v8.27z" />
+                    </svg>
+                  </div>
+
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-2 text-slate-500 text-sm mb-4 font-medium">
+                      <span className="flex items-center gap-1 bg-emerald-50 text-emerald-700 px-2 py-1 rounded">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                        {new Date(
+                          featuredPost.published_at || featuredPost.created_at
+                        ).toLocaleDateString("bn-BD")}
+                      </span>
+                      <span>•</span>
+                      <span>{featuredPost.author_email || "অজানা লেখক"}</span>
+                    </div>
+
+                    <Link
+                      href={`/post/${featuredPost.slug}`}
+                      className="group-hover:text-primary transition-colors"
+                    >
+                      <h3 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight">
+                        {featuredPost.title}
+                      </h3>
+                    </Link>
+
+                    <p className="text-slate-600 text-lg leading-relaxed mb-8 line-clamp-3">
+                      {featuredPost.excerpt ||
+                        featuredPost.content
+                          ?.replace(/<[^>]*>/g, "")
+                          .substring(0, 180)}
+                      ...
+                    </p>
+
+                    <Button
+                      asChild
+                      className="self-start bg-slate-900 hover:bg-primary text-white px-8 py-6 rounded-xl transition-all shadow-lg hover:shadow-primary/30"
+                    >
+                      <Link
+                        href={`/post/${featuredPost.slug}`}
+                        className="flex items-center gap-2 text-lg"
+                      >
+                        পড়তে থাকুন{" "}
+                        <svg
+                          className="w-5 h-5"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          />
+                        </svg>
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </section>
+        )}
+
+        {/* Latest Posts - Robust Grid */}
+        {latestPosts && latestPosts.length > 0 ? (
+          <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-white">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+              <div className="flex items-center justify-center gap-2">
+                <div className="w-1.5 h-8 bg-emerald-500 rounded-full"></div>
+                <div>
+                  <h2 className="text-xl md:text-2xl font-semibold text-slate-900  font-arabic">
+                  সদ্য প্রকাশিত
+                </h2>
+                <p className="text-slate-500 text-lg">
+                  সাম্প্রতিক সময়ের গুরুত্বপূর্ণ আলোচনা ও প্রবন্ধসমূহ
+                </p>
+                </div>
+                
+              </div>
+              <Button
+                variant="ghost"
+                className="text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 gap-2"
+              >
+                <Link href="/blogs" className="flex items-center">
+                  সবগুলো দেখুন{" "}
+                  <svg
+                    className="w-4 h-4 ml-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </Link>
+              </Button>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {latestPosts.slice(0, 3).map((post) => (
+                <article
+                  key={post.id}
+                  className="group flex flex-col h-full bg-white border border-slate-100 rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 hover:-translate-y-1"
+                >
+                  {/* Card Image */}
+                  <div className="h-56 bg-slate-100 overflow-hidden relative">
+                    {post.category && (
+                      <div className="absolute top-4 right-4 z-10">
+                        <span className="px-3 py-1 bg-black/60 backdrop-blur text-white text-xs font-bold rounded-full">
+                          {post.category}
+                        </span>
+                      </div>
+                    )}
                     {(() => {
-                      const firstImageMatch = featuredPost.content?.match(
+                      const firstImageMatch = post.content?.match(
                         /<img[^>]+src="([^">]+)"/
                       );
                       const firstImage = firstImageMatch
@@ -218,179 +338,95 @@ export default async function HomePage() {
                         // eslint-disable-next-line @next/next/no-img-element
                         <img
                           src={firstImage}
-                          alt={featuredPost.title}
-                          className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                          alt={post.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center">
-                          <span className="text-slate-500 text-sm">
-                            প্রধান ইমেজ নেই
-                          </span>
+                        <div className="w-full h-full bg-slate-100 flex items-center justify-center">
+                          <svg
+                            className="w-12 h-12 text-slate-200"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={1}
+                              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            />
+                          </svg>
                         </div>
                       );
                     })()}
                   </div>
 
-                  {/* Content */}
-                  <div className="md:col-span-2 p-6 md:p-10 flex flex-col justify-center">
-                    {featuredPost.category && (
-                      <div className="mb-3">
-                        <span className="text-xs uppercase tracking-widest font-semibold text-primary border-b-2 border-primary pb-2">
-                          {featuredPost.category}
-                        </span>
-                      </div>
-                    )}
+                  {/* Card Content */}
+                  <div className="p-6 flex flex-col flex-1">
+                    <div className="flex items-center gap-2 text-xs text-slate-400 mb-3 font-medium">
+                      <span className="text-emerald-600">
+                        {new Date(
+                          post.published_at || post.created_at
+                        ).toLocaleDateString("bn-BD")}
+                      </span>
+                      <span>•</span>
+                      <span>
+                        {Math.ceil((post.content?.length || 500) / 1000)} মিনিট
+                        পাঠ
+                      </span>
+                    </div>
 
-                    <Link href={`/post/${featuredPost.slug}`}>
-                      <h3 className="text-2xl md:text-3xl  font-bold text-slate-900 mb-4 hover:text-primary transition line-clamp-3">
-                        {featuredPost.title}
+                    <Link href={`/post/${post.slug}`} className="block mb-3">
+                      <h3 className="text-xl font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-2 leading-snug">
+                        {post.title}
                       </h3>
                     </Link>
 
-                    <p className="text-slate-600 text-base md:text-lg leading-relaxed mb-6 line-clamp-2">
-                      {featuredPost.excerpt ||
-                        featuredPost.content
-                          ?.replace(/<[^>]*>/g, "")
-                          .substring(0, 150)}
+                    <p className="text-slate-500 text-sm line-clamp-3 mb-6 flex-1 leading-relaxed">
+                      {post.excerpt ||
+                        post.content?.replace(/<[^>]*>/g, "").substring(0, 100)}
+                      ...
                     </p>
 
-                    <div className="flex items-center justify-between pt-4 border-t border-slate-200">
-                      <div className="text-sm">
-                        <p className="font-semibold text-slate-900">
-                          {featuredPost.author_email || "অজানা লেখক"}
-                        </p>
-                        <p className="text-slate-500">
-                          {new Date(
-                            featuredPost.published_at || featuredPost.created_at
-                          ).toLocaleDateString("bn-BD")}
-                        </p>
-                      </div>
-                      <Link
-                        href={`/post/${featuredPost.slug}`}
-                        className="text-primary hover:text-primary/80 font-semibold transition text-sm md:text-base"
-                      >
-                        পূর্ণ নিবন্ধ →
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </section>
-        )}
-
-        {/* Latest Posts */}
-        {latestPosts && latestPosts.length > 0 ? (
-          <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-200">
-            <h2 className="text-3xl md:text-4xl  font-bold text-slate-900 mb-10">
-              সর্বশেষ নিবন্ধ
-            </h2>
-
-            {/* Featured Grid Style */}
-            <div className="space-y-8">
-              {latestPosts.slice(0, 3).map((post) => (
-                <article
-                  key={post.id}
-                  className="group border-b border-slate-200 pb-8 hover:opacity-80 transition"
-                >
-                  <div className="grid md:grid-cols-4 gap-6 items-start">
-                    {/* Image */}
-                    <div className="md:col-span-1 h-40 bg-slate-100 rounded overflow-hidden relative">
-                      {(() => {
-                        const firstImageMatch = post.content?.match(
-                          /<img[^>]+src="([^">]+)"/
-                        );
-                        const firstImage = firstImageMatch
-                          ? firstImageMatch[1]
-                          : null;
-                        return firstImage ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img
-                            src={firstImage}
-                            alt={post.title}
-                            className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                          />
-                        ) : (
-                          <div className="w-full h-full bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center">
-                            <span className="text-slate-500 text-xs">
-                              ইমেজ নেই
-                            </span>
-                          </div>
-                        );
-                      })()}
-                    </div>
-
-                    {/* Content */}
-                    <div className="md:col-span-3">
-                      {post.category && (
-                        <span className="inline-block text-xs uppercase tracking-widest font-semibold text-primary mb-2">
-                          {post.category}
-                        </span>
-                      )}
-
-                      <Link href={`/post/${post.slug}`}>
-                        <h3 className="text-xl md:text-2xl  font-bold text-slate-900 mb-2 hover:text-primary transition group-hover:text-primary line-clamp-2">
-                          {post.title}
-                        </h3>
-                      </Link>
-
-                      <p className="text-slate-600 text-sm md:text-base mb-4 line-clamp-2">
-                        {post.excerpt ||
-                          post.content
-                            ?.replace(/<[^>]*>/g, "")
-                            .substring(0, 120)}
-                      </p>
-
-                      <div className="flex items-center justify-between">
-                        <div className="text-xs text-slate-500">
-                          <p className="font-semibold text-slate-900">
-                            {post.author_email || "অজানা লেখক"}
-                          </p>
-                          <p>
-                            {new Date(
-                              post.published_at || post.created_at
-                            ).toLocaleDateString("bn-BD")}
-                          </p>
+                    <div className="pt-4 border-t border-slate-50 flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-500">
+                          {(post.author_email || "A").charAt(0).toUpperCase()}
                         </div>
-                        <Link
-                          href={`/post/${post.slug}`}
-                          className="text-primary hover:text-primary/80 font-semibold text-sm transition"
-                        >
-                          পড়ুন →
-                        </Link>
+                        <span className="text-xs font-medium text-slate-500">
+                          {post.author_email || "লেখক"}
+                        </span>
                       </div>
+                      <span className="text-emerald-600 text-sm font-bold group-hover:translate-x-1 transition-transform">
+                        বিস্তারিত →
+                      </span>
                     </div>
                   </div>
                 </article>
               ))}
             </div>
 
-            {/* View All Button */}
+            {/* View All Button - styled differently if needed, but the top link handles it */}
             {latestPosts.length > 3 && (
-              <div className="mt-12 text-center">
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className="border-slate-300 text-slate-900 hover:bg-slate-50"
-                >
-                  <Link href="/blogs">সকল নিবন্ধ দেখুন</Link>
+              <div className="mt-12 text-center md:hidden">
+                <Button asChild variant="outline" className="w-full">
+                  <Link href="/blogs">আরও দেখুন</Link>
                 </Button>
               </div>
             )}
           </section>
         ) : (
-          <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-200">
-            <div className="text-center py-16">
-              <p className="text-xl text-slate-600 font-medium">
-                এখনো কোনো প্রকাশিত নিবন্ধ নেই
+          <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div className="bg-slate-50 rounded-2xl border border-dashed border-slate-300 p-12 text-center">
+              <p className="text-xl text-slate-500">
+                এই মুহূর্তে কোনো নিবন্ধ প্রকাশিত নেই। শীঘ্রই নতুন লেখা আসছে...
               </p>
             </div>
           </section>
         )}
 
         {/* Newsletter Section */}
-        {!session && (
+        {/* {!session && (
           <section className="bg-slate-50 border-t border-slate-200 py-16">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <h3 className="text-3xl md:text-4xl  font-bold text-slate-900 mb-4">
@@ -410,74 +446,11 @@ export default async function HomePage() {
               </div>
             </div>
           </section>
-        )}
+        )} */}
 
         {/* Footer */}
-        <footer className="bg-slate-900 text-slate-300 py-12">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-              <div>
-                <h4 className="text-white font-bold mb-3">আমাদের সম্পর্কে</h4>
-                <p className="text-sm leading-relaxed">
-                  চিন্তাশীল প্রবন্ধ এবং গভীর বিশ্লেষণের মাধ্যমে সমসাময়িক
-                  বিষয়গুলি নিয়ে আলোচনা।
-                </p>
-              </div>
-              <div>
-                <h4 className="text-white font-bold mb-3">দ্রুত লিঙ্ক</h4>
-                <ul className="text-sm space-y-2">
-                  <li>
-                    <Link href="/" className="hover:text-white transition">
-                      হোমপেজ
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/blogs" className="hover:text-white transition">
-                      সব নিবন্ধ
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/about" className="hover:text-white transition">
-                      আমাদের সম্পর্কে
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-white font-bold mb-3">নীতিমালা</h4>
-                <ul className="text-sm space-y-2">
-                  <li>
-                    <Link
-                      href="/privacy"
-                      className="hover:text-white transition"
-                    >
-                      গোপনীয়তা নীতি
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/terms" className="hover:text-white transition">
-                      সেবার শর্তাবলী
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-white font-bold mb-3">যোগাযোগ</h4>
-                <p className="text-sm">
-                  ইমেইল: info@blogplatform.com
-                  <br />
-                  ঢাকা, বাংলাদেশ
-                </p>
-              </div>
-            </div>
-            <div className="border-t border-slate-800 pt-8 text-center text-sm">
-              <p>
-                &copy; ২০২৫ সুন্নাহ প্রবন্ধ। সর্বাধিকার সংরক্ষিত। <Link href={"http://naimworld.netlify.app"}>NaimEkattor</Link>
-              </p>
-            </div>
-          </div>
-        </footer>
       </main>
-    </>
+      <Footer />
+    </div>
   );
 }

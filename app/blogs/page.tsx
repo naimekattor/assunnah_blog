@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase/server"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
 import { getSession, getUserProfile } from "@/lib/auth"
 
 interface BlogsPageProps {
@@ -17,6 +18,7 @@ export default async function BlogsPage(props: {
   const supabase = await createClient()
 
   const categorySlug = typeof searchParams.category === "string" ? searchParams.category : null
+  const searchQuery = typeof searchParams.search === "string" ? searchParams.search : null
 
   let query = supabase
     .from("posts")
@@ -42,11 +44,17 @@ export default async function BlogsPage(props: {
     }
   }
 
+  if (searchQuery) {
+    query = query.or(`title.ilike.%${searchQuery}%,excerpt.ilike.%${searchQuery}%`)
+  }
+
   const { data: posts } = await query.order("published_at", { ascending: false })
 
   // Get current category name for display
   let currentCategoryName = "সকল নিবন্ধ"
-  if (categorySlug && posts && posts.length > 0) {
+  if (searchQuery) {
+    currentCategoryName = `অনুসন্ধানের ফলাফল: "${searchQuery}"`
+  } else if (categorySlug && posts && posts.length > 0) {
      // Try to get name from first post
      currentCategoryName = posts[0].categories?.name_bn || categorySlug
   } else if (categorySlug) {
@@ -60,9 +68,9 @@ export default async function BlogsPage(props: {
   }
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Header profile={profile} />
-      <main className="min-h-screen bg-white py-16">
+      <main className="flex-1 bg-white py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-10">
             <h1 className="text-3xl md:text-4xl font-bold text-slate-900">
@@ -130,6 +138,7 @@ export default async function BlogsPage(props: {
           )}
         </div>
       </main>
-    </>
+      <Footer />
+    </div>
   )
 }
