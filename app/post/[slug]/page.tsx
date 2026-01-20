@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { formatDate } from "@/lib/utils/date"
+import { DeletePostButton } from "@/components/delete-post-button"
 
 interface PostPageProps {
   params: Promise<{ slug: string }>
@@ -145,11 +146,20 @@ export default async function PostPage({ params }: PostPageProps) {
               />
             </article>
 
-            {(isAuthor || isMod) && post.status === "pending" && (
-              <div className="flex gap-4 pt-6 border-t">
-                <Button asChild variant="outline">
-                  <Link href={`/dashboard/posts/${post.id}`}>Edit</Link>
-                </Button>
+            {(isAuthor || isMod) && (
+              <div className="flex flex-wrap gap-4 pt-6 border-t">
+                {post.status === "pending" && (
+                  <Button asChild variant="outline">
+                    <Link href={`/dashboard/posts/${post.id}/edit`}>Edit</Link>
+                  </Button>
+                )}
+                
+                <DeletePostButton 
+                  postId={post.id} 
+                  redirectUrl="/blogs" 
+                  variant="outline"
+                  className="text-rose-600 hover:text-rose-700 hover:bg-rose-50 border-rose-100"
+                />
               </div>
             )}
 

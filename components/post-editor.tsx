@@ -102,7 +102,7 @@ export function PostEditor({ initialPost, onSubmit }: PostEditorProps) {
             <div className="border rounded-lg overflow-hidden">
               <SimpleEditor
                 initialContent={content}
-                onChange={handleContentChange}
+                onChangeAction={handleContentChange}
               />
             </div>
           </div>
@@ -125,10 +125,10 @@ export function PostEditor({ initialPost, onSubmit }: PostEditorProps) {
           {error && <p className="text-sm text-destructive">{error}</p>}
 
           <div className="flex gap-4">
-            <Button type="submit" disabled={isLoading} size="lg">
+            <Button type="submit" disabled={isLoading} size="lg" className="text-white">
               {isLoading ? "সংরক্ষণ করা হচ্ছে..." : initialPost ? "পোস্ট আপডেট করুন" : "পোস্ট তৈরি করুন"}
             </Button>
-            <Button type="button" variant="outline" size="lg" onClick={() => router.back()}>
+            <Button type="button" variant="outline" size="lg" onClick={() => router.back()} className="text-white">
               বাতিল করুন
             </Button>
           </div>

@@ -59,10 +59,6 @@ export async function updatePost(
     throw new Error("Not found or unauthorized")
   }
 
-  if (existingPost.status !== "pending") {
-    throw new Error("Can only edit pending posts")
-  }
-
   const { error } = await supabase
     .from("posts")
     .update({
@@ -73,6 +69,34 @@ export async function updatePost(
       updated_at: new Date().toISOString(),
     })
     .eq("id", id)
+
+  if (error) {
+    throw new Error(error.message)
+  }
+}
+
+export async function deletePost(id: string) {
+  const profile = await getUserProfile()
+  if (!profile) {
+    throw new Error("Unauthorized")
+  }
+
+  const supabase = await createClient()
+
+  const { data: post } = await supabase.from("posts").select("*").eq("id", id).single()
+
+  if (!post) {
+    throw new Error("Post not found")
+  }
+
+  const isAuthor = post.author_id === profile.id
+  const isPrivileged = profile.role === "admin" || profile.role === "moderator"
+
+  if (!isAuthor && !isPrivileged) {
+    throw new Error("Unauthorized")
+  }
+
+  const { error } = await supabase.from("posts").delete().eq("id", id)
 
   if (error) {
     throw new Error(error.message)

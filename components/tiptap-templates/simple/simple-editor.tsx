@@ -140,7 +140,7 @@ const MainToolbarContent = ({
       <ToolbarSeparator />
 
       <ToolbarGroup>
-        <ImageUploadButton text="Add" />
+        <ImageUploadButton />
       </ToolbarGroup>
 
       <Spacer />
@@ -183,10 +183,10 @@ const MobileToolbarContent = ({
 
 export function SimpleEditor({
   initialContent,
-  onChange,
+  onChangeAction,
 }: {
   initialContent?: string
-  onChange?: (html: string) => void
+  onChangeAction?: (html: string) => void
 } = {}) {
   const isMobile = useIsBreakpoint()
   const { height } = useWindowSize()
@@ -234,8 +234,8 @@ export function SimpleEditor({
     ],
     content: initialContent || "",
     onUpdate: ({ editor }) => {
-      if (onChange) {
-        onChange(editor.getHTML())
+      if (onChangeAction) {
+        onChangeAction(editor.getHTML())
       }
     },
   })

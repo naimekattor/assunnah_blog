@@ -157,7 +157,7 @@ export default async function HomePage() {
                 <div className="h-72 lg:h-auto bg-slate-100 overflow-hidden relative">
                   <div className="absolute top-4 left-4 z-10">
                     {featuredPost.category && (
-                      <span className="px-3 py-1.5 bg-white/90 backdrop-blur text-emerald-700 font-bold text-xs uppercase tracking-wider rounded-lg shadow-sm">
+                      <span className="px-3 py-1.5 bg-white/90 backdrop-blur text-primary font-bold text-xs uppercase tracking-wider rounded-lg shadow-sm">
                         {featuredPost.category}
                       </span>
                     )}
@@ -203,7 +203,7 @@ export default async function HomePage() {
 
                   <div className="relative z-10">
                     <div className="flex items-center gap-2 text-slate-500 text-sm mb-4 font-medium">
-                      <span className="flex items-center gap-1 bg-emerald-50 text-emerald-700 px-2 py-1 rounded">
+                      <span className="flex items-center gap-1 bg-primary/5 text-primary px-2 py-1 rounded">
                         <svg
                           className="w-4 h-4"
                           fill="none"
@@ -278,7 +278,7 @@ export default async function HomePage() {
           <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-white">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
               <div className="flex items-center justify-center gap-2">
-                <div className="w-1.5 h-8 bg-emerald-500 rounded-full"></div>
+                <div className="w-1.5 h-8 bg-primary rounded-full"></div>
                 <div>
                   <h2 className="text-xl md:text-2xl font-semibold text-slate-900  font-arabic">
                   সদ্য প্রকাশিত
@@ -291,7 +291,7 @@ export default async function HomePage() {
               </div>
               <Button
                 variant="ghost"
-                className="text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 gap-2"
+                className="text-primary hover:text-primary/80 hover:bg-primary/5 gap-2"
               >
                 <Link href="/blogs" className="flex items-center">
                   সবগুলো দেখুন{" "}
@@ -314,95 +314,11 @@ export default async function HomePage() {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {latestPosts.slice(0, 3).map((post) => (
-                <article
-                  key={post.id}
-                  className="group flex flex-col h-full bg-white border border-slate-100 rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 hover:-translate-y-1"
-                >
-                  {/* Card Image */}
-                  <div className="h-56 bg-slate-100 overflow-hidden relative">
-                    {post.category && (
-                      <div className="absolute top-4 right-4 z-10">
-                        <span className="px-3 py-1 bg-black/60 backdrop-blur text-white text-xs font-bold rounded-full">
-                          {post.category}
-                        </span>
-                      </div>
-                    )}
-                    {(() => {
-                      const firstImageMatch = post.content?.match(
-                        /<img[^>]+src="([^">]+)"/
-                      );
-                      const firstImage = firstImageMatch
-                        ? firstImageMatch[1]
-                        : null;
-                      return firstImage ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={firstImage}
-                          alt={post.title}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-slate-100 flex items-center justify-center">
-                          <svg
-                            className="w-12 h-12 text-slate-200"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={1}
-                              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                            />
-                          </svg>
-                        </div>
-                      );
-                    })()}
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="p-6 flex flex-col flex-1">
-                    <div className="flex items-center gap-2 text-xs text-slate-400 mb-3 font-medium">
-                      <span className="text-emerald-600">
-                        {new Date(
-                          post.published_at || post.created_at
-                        ).toLocaleDateString("bn-BD")}
-                      </span>
-                      <span>•</span>
-                      <span>
-                        {Math.ceil((post.content?.length || 500) / 1000)} মিনিট
-                        পাঠ
-                      </span>
-                    </div>
-
-                    <Link href={`/post/${post.slug}`} className="block mb-3">
-                      <h3 className="text-xl font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-2 leading-snug">
-                        {post.title}
-                      </h3>
-                    </Link>
-
-                    <p className="text-slate-500 text-sm line-clamp-3 mb-6 flex-1 leading-relaxed">
-                      {post.excerpt ||
-                        post.content?.replace(/<[^>]*>/g, "").substring(0, 100)}
-                      ...
-                    </p>
-
-                    <div className="pt-4 border-t border-slate-50 flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-500">
-                          {(post.author_email || "A").charAt(0).toUpperCase()}
-                        </div>
-                        <span className="text-xs font-medium text-slate-500">
-                          {post.author_email || "লেখক"}
-                        </span>
-                      </div>
-                      <span className="text-emerald-600 text-sm font-bold group-hover:translate-x-1 transition-transform">
-                        বিস্তারিত →
-                      </span>
-                    </div>
-                  </div>
-                </article>
+                <PostCard 
+                  key={post.id} 
+                  post={post} 
+                  userRole={profile?.role}
+                />
               ))}
             </div>
 

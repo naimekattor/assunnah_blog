@@ -94,16 +94,16 @@ export function Header({ profile }: HeaderProps) {
           <div className="hidden md:flex items-center gap-4">
             {profile ? (
               <>
-                <Link href="/dashboard" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
+                <Link href="/dashboard" className="text-lg font-medium text-slate-700 hover:text-primary transition">
                   ড্যাশবোর্ড
                 </Link>
                 {profile.role === "moderator" || profile.role === "admin" ? (
-                  <Link href="/moderation" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
+                  <Link href="/moderation" className="text-lg font-medium text-slate-700 hover:text-primary transition">
                     মডারেশন
                   </Link>
                 ) : null}
                 {profile.role === "admin" ? (
-                  <Link href="/admin" className="text-lg font-medium text-slate-700 hover:text-blue-600 transition">
+                  <Link href="/admin" className="text-lg font-medium text-slate-700 hover:text-primary transition">
                     অ্যাডমিন
                   </Link>
                 ) : null}
@@ -172,36 +172,73 @@ export function Header({ profile }: HeaderProps) {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden pb-4 space-y-2 border-t border-slate-200">
-            <Link href="/" className="block px-4 py-2 text-sm font-medium hover:bg-slate-100 rounded transition">
+            <Link 
+              href="/" 
+              onClick={() => setIsMenuOpen(false)}
+              className={cn("block px-4 py-2 text-sm font-medium transition rounded-lg", isActive("/") ? "bg-primary/10 text-primary font-bold" : "hover:bg-slate-100 text-slate-700")}
+            >
               হোমপেজ
             </Link>
-            <Link href="/blogs?category=masala-masayel" className="block px-4 py-2 text-sm font-medium hover:bg-slate-100 rounded transition">
+            <Link 
+              href="/blogs?category=masala-masayel" 
+              onClick={() => setIsMenuOpen(false)}
+              className={cn("block px-4 py-2 text-sm font-medium transition rounded-lg", isActive("/blogs?category=masala-masayel") ? "bg-primary/10 text-primary font-bold" : "hover:bg-slate-100 text-slate-700")}
+            >
               মাসআলা মাসায়েল
             </Link>
-            <Link href="/blogs?category=quraner-alo" className="block px-4 py-2 text-sm font-medium hover:bg-slate-100 rounded transition">
+            <Link 
+              href="/blogs?category=quraner-alo" 
+              onClick={() => setIsMenuOpen(false)}
+              className={cn("block px-4 py-2 text-sm font-medium transition rounded-lg", isActive("/blogs?category=quraner-alo") ? "bg-primary/10 text-primary font-bold" : "hover:bg-slate-100 text-slate-700")}
+            >
               কোরআনের আলো
             </Link>
-            <Link href="/blogs?category=probondho-somuho" className="block px-4 py-2 text-sm font-medium hover:bg-slate-100 rounded transition">
+            <Link 
+              href="/blogs?category=probondho-somuho" 
+              onClick={() => setIsMenuOpen(false)}
+              className={cn("block px-4 py-2 text-sm font-medium transition rounded-lg", isActive("/blogs?category=probondho-somuho") ? "bg-primary/10 text-primary font-bold" : "hover:bg-slate-100 text-slate-700")}
+            >
               প্রবন্ধ সমূহ
             </Link>
-            <Link href="/blogs?category=bishoy-bhittik-boyan" className="block px-4 py-2 text-sm font-medium hover:bg-slate-100 rounded transition">
+            <Link 
+              href="/blogs?category=bishoy-bhittik-boyan" 
+              onClick={() => setIsMenuOpen(false)}
+              className={cn("block px-4 py-2 text-sm font-medium transition rounded-lg", isActive("/blogs?category=bishoy-bhittik-boyan") ? "bg-primary/10 text-primary font-bold" : "hover:bg-slate-100 text-slate-700")}
+            >
               বিষয়ভিত্তিক বয়ান
             </Link>
-            <Link href="/blogs?category=others" className="block px-4 py-2 text-sm font-medium hover:bg-slate-100 rounded transition">
-              অন্যান্য
+            <Link 
+              href="/about" 
+              onClick={() => setIsMenuOpen(false)}
+              className={cn("block px-4 py-2 text-sm font-medium transition rounded-lg", isActive("/about") ? "bg-primary/10 text-primary font-bold" : "hover:bg-slate-100 text-slate-700")}
+            >
+              আমাদের সম্পর্কে
             </Link>
+
             {profile ? (
               <>
-                <Link href="/dashboard" className="block px-4 py-2 text-sm font-medium hover:bg-slate-100 rounded transition">
+                <Link 
+                  href="/dashboard" 
+                  onClick={() => setIsMenuOpen(false)}
+                  className={cn("block px-4 py-2 text-sm font-medium transition rounded-lg", isActive("/dashboard") ? "bg-primary/10 text-primary font-bold" : "hover:bg-slate-100 text-slate-700")}
+                >
                   ড্যাশবোর্ড
                 </Link>
                 {profile.role === "moderator" || profile.role === "admin" ? (
-                  <Link href="/moderation" className="block px-4 py-2 text-sm font-medium hover:bg-slate-100 rounded transition">
+                  <Link 
+                    href="/moderation" 
+                    onClick={() => setIsMenuOpen(false)}
+                    className={cn("block px-4 py-2 text-sm font-medium transition rounded-lg", isActive("/moderation") ? "bg-primary/10 text-primary font-bold" : "hover:bg-slate-100 text-slate-700")}
+                  >
                     মডারেশন
                   </Link>
                 ) : null}
                 {profile.role === "admin" ? (
-                  <Link href="/admin" className="block px-4 py-2 text-sm font-medium hover:bg-slate-100 rounded transition">
+                  <Link 
+                    href="/admin" 
+                    onClick={() => setIsMenuOpen(false)}
+                    className={cn("block px-4 py-2 text-sm font-medium transition rounded-lg", isActive("/admin") ? "bg-primary/10 text-primary font-bold" : "hover:bg-slate-100 text-slate-700")}
+                  >
                     অ্যাডমিন
                   </Link>
                 ) : null}

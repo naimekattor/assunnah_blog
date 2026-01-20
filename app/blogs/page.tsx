@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { PostCard } from "@/components/post-card"
 import { getSession, getUserProfile } from "@/lib/auth"
 
 interface BlogsPageProps {
@@ -88,51 +89,14 @@ export default async function BlogsPage(props: {
           ) : (
             <div className="grid md:grid-cols-3 gap-8">
               {posts.map((post) => (
-                <article key={post.id} className="group flex flex-col h-full border border-slate-200 rounded-lg overflow-hidden hover:shadow-lg transition">
-                  <div className="h-48 bg-slate-100 overflow-hidden relative">
-                    {(() => {
-                      const firstImageMatch = post.content?.match(/<img[^>]+src="([^">]+)"/)
-                      const firstImage = firstImageMatch ? firstImageMatch[1] : null
-                      return firstImage ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img 
-                          src={firstImage} 
-                          alt={post.title}
-                          className="w-full h-full object-cover transition-transform group-hover:scale-105" 
-                        />
-                      ) : (
-                        <div className="absolute inset-0 bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center">
-                          <span className="text-slate-500 text-sm">ইমেজ নেই</span>
-                        </div>
-                      )
-                    })()}
-                  </div>
-                  
-                  <div className="p-6 flex flex-col flex-1">
-                    {post.categories && (
-                      <span className="text-xs uppercase tracking-widest font-semibold text-primary mb-3 block">
-                        {post.categories.name_bn}
-                      </span>
-                    )}
-                    
-                    <Link href={`/post/${post.slug}`} className="block mb-3">
-                      <h3 className="text-xl font-bold text-slate-900 group-hover:text-primary transition line-clamp-2">
-                        {post.title}
-                      </h3>
-                    </Link>
-                    
-                    <p className="text-slate-600 text-sm mb-4 line-clamp-3 leading-relaxed flex-1">
-                      {post.excerpt || post.content?.replace(/<[^>]*>/g, "").substring(0, 150)}...
-                    </p>
-                    
-                    <div className="pt-4 border-t border-slate-100 flex justify-between items-center text-xs text-slate-500">
-                      <span>{new Date(post.published_at || post.created_at).toLocaleDateString("bn-BD")}</span>
-                      <Link href={`/post/${post.slug}`} className="text-primary font-semibold hover:underline">
-                        পড়ুন →
-                      </Link>
-                    </div>
-                  </div>
-                </article>
+                <PostCard 
+                  key={post.id} 
+                  post={{
+                    ...post,
+                    category: (post.categories as any)?.name_bn
+                  }} 
+                  userRole={profile?.role}
+                />
               ))}
             </div>
           )}

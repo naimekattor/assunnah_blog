@@ -16,6 +16,7 @@ export interface Post {
   content: string
   excerpt?: string
   category_id?: string
+  category?: string
   author_email?: string
   status: PostStatus
   created_at: string
