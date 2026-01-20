@@ -2,6 +2,17 @@ import { createServerClient } from "@supabase/ssr"
 import { NextResponse, type NextRequest } from "next/server"
 
 export async function updateSession(request: NextRequest) {
+  // Optimization: Skip middleware for static assets, images, and fonts
+  const { pathname } = request.nextUrl
+  if (
+    pathname.includes('.') || // matches .ico, .png, etc.
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/api') ||
+    pathname.startsWith('/public')
+  ) {
+    return NextResponse.next()
+  }
+
   let supabaseResponse = NextResponse.next({
     request,
   })
@@ -29,13 +40,12 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  // Redirect unauthenticated users to login (except for public routes)
-  if (
-    !user &&
-    !request.nextUrl.pathname.startsWith("/auth") &&
-    !request.nextUrl.pathname.startsWith("/post") &&
-    !request.nextUrl.pathname === "/"
-  ) {
+  // Redirect unauthenticated users to login (restricted routes)
+  const isDashboardRoute = pathname.startsWith("/dashboard")
+  const isAdminRoute = pathname.startsWith("/admin")
+  const isModerationRoute = pathname.startsWith("/moderation")
+
+  if (!user && (isDashboardRoute || isAdminRoute || isModerationRoute)) {
     const url = request.nextUrl.clone()
     url.pathname = "/auth/login"
     return NextResponse.redirect(url)

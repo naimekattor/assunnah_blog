@@ -11,7 +11,7 @@ const notoSerifBengali = Noto_Serif_Bengali({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
   title: {
     default: "সুন্নাহ প্রবন্ধ | বিশুদ্ধ ইসলামিক জ্ঞান",
     template: "%s | সুন্নাহ প্রবন্ধ"
@@ -48,6 +48,9 @@ export const metadata: Metadata = {
   },
 }
 
+import { AnalyticsTracker } from "@/components/analytics-tracker"
+import { Suspense } from "react"
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -56,6 +59,9 @@ export default function RootLayout({
   return (
     <html lang="bn">
       <body className={notoSerifBengali.className}>
+        <Suspense fallback={null}>
+          <AnalyticsTracker />
+        </Suspense>
         {children}
         <Analytics />
       </body>
