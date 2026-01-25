@@ -53,38 +53,33 @@ export function PostCard({ post, showStatus, isDashboard, userRole }: PostCardPr
     }
   }
 
+  const firstImageMatch = post.content?.match(/<img[^>]+src="([^">]+)"/)
+  const firstImage = firstImageMatch ? firstImageMatch[1] : null
+
   return (
     <article className="group bg-white border border-slate-100 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
       <div className="flex flex-col h-full">
         {/* Image Area */}
-        <div className="h-48 bg-slate-100 relative overflow-hidden">
-          {(() => {
-            const firstImageMatch = post.content?.match(/<img[^>]+src="([^">]+)"/)
-            const firstImage = firstImageMatch ? firstImageMatch[1] : null
-            return firstImage ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={firstImage}
-                alt={post.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-            ) : (
-              <div className="w-full h-full bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
-                <span className="text-slate-400 text-xs">ইমেজ নেই</span>
+        {firstImage && (
+          <div className="h-48 bg-slate-100 relative overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={firstImage}
+              alt={post.title}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            
+            {showStatus && (
+              <div className="absolute top-3 right-3">
+                <span className={`px-2 py-1 text-[10px] uppercase tracking-wider font-bold rounded-lg border backdrop-blur-sm ${statusColors[post.status] || statusColors.draft}`}>
+                  {post.status === 'published' ? 'প্রকাশিত' : 
+                   post.status === 'pending' ? 'অপেক্ষমাণ' : 
+                   post.status === 'rejected' ? 'বাতিল' : 'খসড়া'}
+                </span>
               </div>
-            )
-          })()}
-          
-          {showStatus && (
-            <div className="absolute top-3 right-3">
-              <span className={`px-2 py-1 text-[10px] uppercase tracking-wider font-bold rounded-lg border backdrop-blur-sm ${statusColors[post.status] || statusColors.draft}`}>
-                {post.status === 'published' ? 'প্রকাশিত' : 
-                 post.status === 'pending' ? 'অপেক্ষমাণ' : 
-                 post.status === 'rejected' ? 'বাতিল' : 'খসড়া'}
-              </span>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        )}
 
         {/* Content */}
         <div className="p-5 flex flex-col flex-1">
@@ -108,7 +103,7 @@ export function PostCard({ post, showStatus, isDashboard, userRole }: PostCardPr
 
           <div className="flex items-center justify-between pt-4 border-t border-slate-50">
             <div className="text-[10px] text-slate-400">
-              <p className="font-semibold text-slate-700">{post.author_email || "অজানা লেখক"}</p>
+              {/* <p className="font-semibold text-slate-700">{post.author_email || "অজানা লেখক"}</p> */}
               <p>{new Date(post.published_at || post.created_at).toLocaleDateString("bn-BD")}</p>
             </div>
             

@@ -123,7 +123,7 @@ export default async function PostPage({ params }: PostPageProps) {
                 <div className="flex-1 space-y-2">
                   <h1 className="text-4xl font-bold text-balance">{post.title}</h1>
                   <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                    <span>By {post.profiles?.email}</span>
+                    {/* <span>By {post.profiles?.email}</span> */}
                     <span>{formatDate(post.published_at || post.created_at)}</span>
                   </div>
                 </div>
@@ -179,32 +179,31 @@ export default async function PostPage({ params }: PostPageProps) {
                  আরও পড়ুন (সম্পর্কিত নিবন্ধ)
                </h2>
                <div className="grid md:grid-cols-3 gap-6">
-                 {relatedPosts.map((rPost) => (
-                   <div key={rPost.id} className="bg-white border border-slate-200 rounded-lg overflow-hidden hover:shadow-md transition group">
-                      <Link href={`/post/${rPost.slug}`} className="block">
-                        <div className="h-40 bg-slate-100 relative overflow-hidden">
-                           {(() => {
-                              const imgMatch = rPost.content?.match(/<img[^>]+src="([^">]+)"/)
-                              const src = imgMatch ? imgMatch[1] : null
-                              return src ? (
-                                // eslint-disable-next-line @next/next/no-img-element
-                                <img src={src} alt={rPost.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
-                              ) : (
-                                <div className="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-100">No Image</div>
-                              )
-                           })()}
+                 {relatedPosts.map((rPost) => {
+                    const imgMatch = rPost.content?.match(/<img[^>]+src="([^">]+)"/)
+                    const src = imgMatch ? imgMatch[1] : null
+                    
+                    return (
+                        <div key={rPost.id} className="bg-white border border-slate-200 rounded-lg overflow-hidden hover:shadow-md transition group">
+                        <Link href={`/post/${rPost.slug}`} className="block">
+                            {src && (
+                                <div className="h-40 bg-slate-100 relative overflow-hidden">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img src={src} alt={rPost.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                                </div>
+                            )}
+                            <div className="p-4">
+                            <h3 className="font-bold text-slate-800 line-clamp-2 group-hover:text-primary transition mb-2">
+                                {rPost.title}
+                            </h3>
+                            <p className="text-slate-500 text-sm line-clamp-2">
+                                {rPost.excerpt || "..."}
+                            </p>
+                            </div>
+                        </Link>
                         </div>
-                        <div className="p-4">
-                           <h3 className="font-bold text-slate-800 line-clamp-2 group-hover:text-primary transition mb-2">
-                             {rPost.title}
-                           </h3>
-                           <p className="text-slate-500 text-sm line-clamp-2">
-                             {rPost.excerpt || "..."}
-                           </p>
-                        </div>
-                      </Link>
-                   </div>
-                 ))}
+                    )
+                 })}
                </div>
             </div>
           </div>

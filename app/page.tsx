@@ -23,6 +23,8 @@ export default async function HomePage() {
     .order("published_at", { ascending: false });
 
   const featuredPost = posts?.[0];
+  const featuredImageMatch = featuredPost?.content?.match(/<img[^>]+src="([^">]+)"/);
+  const featuredImage = featuredImageMatch ? featuredImageMatch[1] : null;
   const latestPosts = posts?.slice(1) || [];
 
   return (
@@ -152,53 +154,39 @@ export default async function HomePage() {
             </div>
 
             <article className="group relative bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100 hover:shadow-2xl transition-all duration-500">
-              <div className="grid lg:grid-cols-2 gap-0">
+              <div className={`grid gap-0 ${featuredImage ? "lg:grid-cols-2" : "grid-cols-1"}`}>
                 {/* Image Side */}
-                <div className="h-72 lg:h-auto bg-slate-100 overflow-hidden relative">
-                  <div className="absolute top-4 left-4 z-10">
-                    {featuredPost.category && (
-                      <span className="px-3 py-1.5 bg-white/90 backdrop-blur text-primary font-bold text-xs uppercase tracking-wider rounded-lg shadow-sm">
-                        {featuredPost.category}
-                      </span>
-                    )}
-                  </div>
-                  {(() => {
-                    const firstImageMatch = featuredPost.content?.match(
-                      /<img[^>]+src="([^">]+)"/
-                    );
-                    const firstImage = firstImageMatch
-                      ? firstImageMatch[1]
-                      : null;
-                    return firstImage ? (
-                      // eslint-disable-next-line @next/next/no-img-element
+                {featuredImage && (
+                  <div className="h-72 lg:h-auto bg-slate-100 overflow-hidden relative">
+                    <div className="absolute top-4 left-4 z-10">
+                      {featuredPost.category && (
+                        <span className="px-3 py-1.5 bg-white/90 backdrop-blur text-primary font-bold text-xs uppercase tracking-wider rounded-lg shadow-sm">
+                          {featuredPost.category}
+                        </span>
+                      )}
+                    </div>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={firstImage}
+                        src={featuredImage}
                         alt={featuredPost.title}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center">
-                        <span className="text-slate-500 text-sm">
-                          প্রধান ইমেজ নেই
-                        </span>
-                      </div>
-                    );
-                  })()}
-                  {/* Overlay Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
-                </div>
+                    {/* Overlay Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+                  </div>
+                )}
 
                 {/* Content Side */}
                 <div className="p-8 lg:p-12 flex flex-col justify-center bg-white relative">
-                  {/* Decorative background element */}
-                  <div className="absolute top-0 right-0 p-12 opacity-5">
-                    <svg
-                      className="w-32 h-32"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M14.408 24h-13.408v-24h10.189c3.279 0 2.552 9.475 3.219 14.453.667-4.978-.06-14.453 3.219-14.453h10.189v24h-13.408v-11.662l-6.592 11.662zm-5.408-14.73l6-10.617c.521 3.743.028 10.347 1 10.347s.479-6.604 1-10.347l6 10.617v-8.27h-2.189c-2.433 0-1.875 7.031-2.311 10.741-.436-3.71-.122-10.741-2.311-10.741h-7.189v8.27z" />
-                    </svg>
+                  {/* Decorative background element - Logo Reflection */}
+                  <div className="absolute top-0 right-0 p-8 opacity-5">
+                    <Image 
+                      src="/logo2.png" 
+                      width={200} 
+                      height={120} 
+                      alt="Logo Reflection" 
+                      className="object-contain" // Ensures aspect ratio is maintained
+                    />
                   </div>
 
                   <div className="relative z-10">
@@ -222,7 +210,6 @@ export default async function HomePage() {
                         ).toLocaleDateString("bn-BD")}
                       </span>
                       <span>•</span>
-                      <span>{featuredPost.author_email || "অজানা লেখক"}</span>
                     </div>
 
                     <Link
@@ -313,7 +300,7 @@ export default async function HomePage() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {latestPosts.slice(0, 3).map((post) => (
+              {latestPosts.slice(0, 9).map((post) => (
                 <PostCard 
                   key={post.id} 
                   post={post} 
