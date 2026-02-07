@@ -84,7 +84,7 @@ export function Footer() {
                   সকল নিবন্ধ
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/contact" className="text-slate-400 hover:text-emerald-400 transition">
                   যোগাযোগ
                 </Link>
@@ -93,7 +93,7 @@ export function Footer() {
                 <Link href="/privacy" className="text-slate-400 hover:text-emerald-400 transition">
                   গোপনীয়তা নীতি
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 
@@ -108,12 +108,12 @@ export function Footer() {
                 <MapPin className="w-5 h-5 text-emerald-500 mt-0.5" />
                 <span>মিরপুর, ঢাকা-১২১৬,<br />বাংলাদেশ</span>
               </li>
-              <li className="flex items-center gap-3">
+              {/* <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-emerald-500" />
                 <a href="mailto:info@hokpath.com" className="hover:text-emerald-400 transition">
                   info@hokpath.com
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
 

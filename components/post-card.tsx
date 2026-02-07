@@ -57,7 +57,7 @@ export function PostCard({ post, showStatus, isDashboard, userRole }: PostCardPr
   const firstImage = firstImageMatch ? firstImageMatch[1] : null
 
   return (
-    <article className="group bg-white border border-slate-100 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
+    <article className="group bg-background border border-slate-100 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
       <div className="flex flex-col h-full">
         {/* Image Area */}
         {firstImage && (
