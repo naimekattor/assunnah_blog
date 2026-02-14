@@ -23,14 +23,14 @@ export default async function AboutPage() {
               }}
             ></div>
           </div>
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 font-arabic">আমাদের সম্পর্কে</h1>
             <p className="text-emerald-100 text-lg max-w-2xl mx-auto">
               বিশুদ্ধ ইসলামিক জ্ঞান এবং ওলামায়ে কেরামের গবেষণালব্ধ প্রবন্ধের একটি নির্ভরযোগ্য প্লাটফর্ম
             </p>
           </div>
         </section>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
           {/* Mission Section */}
           <div className="grid md:grid-cols-2 gap-12 items-center mb-24">
             <div className="space-y-6">

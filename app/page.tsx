@@ -77,8 +77,8 @@ export default async function HomePage() {
             </svg>
           </div>
 
-          <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10 relative z-10">
-            <div className="space-y-10 max-w-6xl mx-auto text-center">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 relative z-10">
+            <div className="space-y-10 max-w-7xl mx-auto text-center">
               {/* Enhanced Bismillah with beautiful Arabic font & gold glow */}
               <div className="flex items-center justify-center gap-4">
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-emerald-700/30 to-teal-700/30 backdrop-blur-md flex items-center justify-center border border-emerald-400/30 shadow-lg shadow-emerald-900/40">
@@ -145,7 +145,7 @@ export default async function HomePage() {
 
         {/* Featured Post - Modern Magazine Style */}
         {featuredPost && (
-          <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div className="flex items-center gap-3 mb-8">
               <div className="w-1.5 h-8 bg-emerald-500 rounded-full"></div>
               <h2 className="text-xl md:text-2xl font-semibold text-slate-900">
@@ -262,7 +262,7 @@ export default async function HomePage() {
 
         {/* Latest Posts - Robust Grid */}
         {latestPosts && latestPosts.length > 0 ? (
-          <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-white">
+          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-white">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
               <div className="flex items-center justify-center gap-2">
                 <div className="w-1.5 h-8 bg-primary rounded-full"></div>
@@ -319,7 +319,7 @@ export default async function HomePage() {
             )}
           </section>
         ) : (
-          <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <section className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div className="bg-slate-50 rounded-2xl border border-dashed border-slate-300 p-12 text-center">
               <p className="text-xl text-slate-500">
                 এই মুহূর্তে কোনো নিবন্ধ প্রকাশিত নেই। শীঘ্রই নতুন লেখা আসছে...

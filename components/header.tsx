@@ -49,7 +49,7 @@ export function Header({ profile }: HeaderProps) {
     
     shadow-[0_8px_30px_rgba(0,0,0,0.05)]
     py-3">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="text-2xl font-bold">
@@ -91,40 +91,39 @@ export function Header({ profile }: HeaderProps) {
           </nav>
 
           {/* Right Section */}
-          <div className="hidden md:flex items-center gap-4">
-            {profile ? (
-              <>
-                <Link href="/dashboard" className="text-lg font-medium text-slate-700 hover:text-primary transition">
-                  ড্যাশবোর্ড
-                </Link>
-                {profile.role === "moderator" || profile.role === "admin" ? (
-                  <Link href="/moderation" className="text-lg font-medium text-slate-700 hover:text-primary transition">
-                    মডারেশন
-                  </Link>
-                ) : null}
-                {profile.role === "admin" ? (
-                  <Link href="/admin" className="text-lg font-medium text-slate-700 hover:text-primary transition">
-                    অ্যাডমিন
-                  </Link>
-                ) : null}
-                <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">
-                  {profile.role}
-                </span>
-                <Button variant="outline" size="sm" onClick={handleLogout} disabled={isLoading}>
-                  {isLoading ? "বের হচ্ছি..." : "বের হন"}
-                </Button>
-              </>
-            ) : (
-              <>
-                {/* <Button asChild variant="outline" size="sm">
-                  <Link href="/auth/login">প্রবেশ করুন</Link>
-                </Button>
-                <Button asChild size="sm" className="bg-gradient-to-r from-blue-600 to-purple-600">
-                  <Link href="/auth/sign-up">যোগ দিন</Link>
-                </Button> */}
-              </>
-            )}
-          </div>
+          {profile && (
+  <div className="hidden md:flex items-center gap-4">
+    <Link href="/dashboard" className="text-lg font-medium text-slate-700 hover:text-primary transition">
+      ড্যাশবোর্ড
+    </Link>
+
+    {(profile.role === "moderator" || profile.role === "admin") && (
+      <Link href="/moderation" className="text-lg font-medium text-slate-700 hover:text-primary transition">
+        মডারেশন
+      </Link>
+    )}
+
+    {profile.role === "admin" && (
+      <Link href="/admin" className="text-lg font-medium text-slate-700 hover:text-primary transition">
+        অ্যাডমিন
+      </Link>
+    )}
+
+    <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">
+      {profile.role}
+    </span>
+
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={handleLogout}
+      disabled={isLoading}
+    >
+      {isLoading ? "বের হচ্ছি..." : "বের হন"}
+    </Button>
+  </div>
+)}
+
 
           {/* Mobile Actions */}
           <div className="flex items-center gap-2 md:hidden">
@@ -254,12 +253,12 @@ export function Header({ profile }: HeaderProps) {
               </>
             ) : (
               <>
-                <Button asChild variant="outline" size="sm" className="w-full">
+                {/* <Button asChild variant="outline" size="sm" className="w-full">
                   <Link href="/auth/login">প্রবেশ করুন</Link>
                 </Button>
                 <Button asChild size="sm" className="w-full bg-primary hover:bg-primary/90">
                   <Link href="/auth/sign-up">যোগ দিন</Link>
-                </Button>
+                </Button> */}
               </>
             )}
           </div>

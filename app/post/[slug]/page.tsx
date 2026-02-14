@@ -174,7 +174,7 @@ export default async function PostPage({ params }: PostPageProps) {
         {/* Related Posts Section */}
         {relatedPosts && relatedPosts.length > 0 && (
           <div className="bg-slate-50 border-t border-slate-200 py-16 mt-8">
-            <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-xl px-4 sm:px-6 lg:px-8">
                <h2 className="text-2xl font-bold text-slate-900 mb-8 border-l-4 border-primary pl-4">
                  আরও পড়ুন (সম্পর্কিত নিবন্ধ)
                </h2>
