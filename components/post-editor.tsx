@@ -128,7 +128,7 @@ export function PostEditor({ initialPost, onSubmit }: PostEditorProps) {
             <Button type="submit" disabled={isLoading} size="lg" className="text-white">
               {isLoading ? "সংরক্ষণ করা হচ্ছে..." : initialPost ? "পোস্ট আপডেট করুন" : "পোস্ট তৈরি করুন"}
             </Button>
-            <Button type="button" variant="outline" size="lg" onClick={() => router.back()} className="text-white">
+            <Button type="button" variant="outline" size="lg" onClick={() => router.back()} className="text-black">
               বাতিল করুন
             </Button>
           </div>

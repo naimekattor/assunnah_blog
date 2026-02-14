@@ -8,6 +8,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { formatDate } from "@/lib/utils/date"
 import { DeletePostButton } from "@/components/delete-post-button"
+import "@/styles/tiptap-bundle.scss"
 
 interface PostPageProps {
   params: Promise<{ slug: string }>
@@ -115,13 +116,13 @@ export default async function PostPage({ params }: PostPageProps) {
   return (
     <div className="flex flex-col min-h-screen">
       <Header profile={profile} />
-      <main className="flex-1 bg-background pb-12">
-        <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-          <div className="space-y-6">
+      <main className="flex-1 bg-white pb-12">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <div className="space-y-6 max-w-2xl">
             <div className="space-y-4">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1 space-y-2">
-                  <h1 className="text-4xl font-bold text-balance">{post.title}</h1>
+                  <h1 className="text-4xl font-bold leading-12 text-balance">{post.title}</h1>
                   <div className="flex items-center gap-4 text-sm text-muted-foreground">
                     {/* <span>By {post.profiles?.email}</span> */}
                     <span>{formatDate(post.published_at || post.created_at)}</span>
@@ -139,9 +140,9 @@ export default async function PostPage({ params }: PostPageProps) {
               )}
             </div>
 
-            <article className="prose prose-sm max-w-none">
+            <article className="max-w-none">
               <div 
-                className="text-base leading-relaxed text-foreground"
+                className="tiptap ProseMirror simple-editor text-base leading-relaxed text-foreground"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
             </article>
@@ -174,7 +175,7 @@ export default async function PostPage({ params }: PostPageProps) {
         {/* Related Posts Section */}
         {relatedPosts && relatedPosts.length > 0 && (
           <div className="bg-slate-50 border-t border-slate-200 py-16 mt-8">
-            <div className="mx-auto max-w-xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                <h2 className="text-2xl font-bold text-slate-900 mb-8 border-l-4 border-primary pl-4">
                  আরও পড়ুন (সম্পর্কিত নিবন্ধ)
                </h2>

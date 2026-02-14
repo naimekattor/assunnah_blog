@@ -57,7 +57,7 @@ export function PostCard({ post, showStatus, isDashboard, userRole }: PostCardPr
   const firstImage = firstImageMatch ? firstImageMatch[1] : null
 
   return (
-    <article className="group bg-background border border-slate-100 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
+    <article className="group  border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
       <div className="flex flex-col h-full">
         {/* Image Area */}
         {firstImage && (
@@ -92,12 +92,12 @@ export function PostCard({ post, showStatus, isDashboard, userRole }: PostCardPr
           </div>
 
           <Link href={`/post/${post.slug}`} className="mb-3">
-            <h3 className="text-lg font-bold text-slate-900 group-hover:text-primary transition line-clamp-2 leading-snug">
+            <h3 className="text-xl font-semibold text-[#000000] group-hover:text-primary transition line-clamp-2 leading-10">
               {post.title}
             </h3>
           </Link>
 
-          <p className="text-slate-500 text-xs mb-4 line-clamp-2 leading-relaxed flex-1">
+          <p className="text-[#555555] text-[16px] mb-4 line-clamp-16 leading-8 flex-1">
             {post.excerpt || post.content?.replace(/<[^>]*>/g, "").substring(0, 100)}...
           </p>
 

@@ -319,7 +319,7 @@ export default async function HomePage() {
             )}
           </section>
         ) : (
-          <section className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div className="bg-slate-50 rounded-2xl border border-dashed border-slate-300 p-12 text-center">
               <p className="text-xl text-slate-500">
                 এই মুহূর্তে কোনো নিবন্ধ প্রকাশিত নেই। শীঘ্রই নতুন লেখা আসছে...
