@@ -123,7 +123,7 @@ export function Footer() {
         <div className="border-t border-slate-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
           <p>&copy; {currentYear} হকপথ। সর্বস্বত্ব সংরক্ষিত।</p>
           <p className="flex items-center gap-1">
-            Developed by <a href="https://naimworld.netlify.app" target="_blank" rel="noopener noreferrer" className="text-emerald-500 hover:text-emerald-400">NaimEkattor</a>
+            Developed by <a href="https://naimdev-hazel.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-emerald-500 hover:text-emerald-400">NaimEkattor</a>
           </p>
         </div>
       </div>
