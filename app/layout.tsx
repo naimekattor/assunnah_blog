@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Noto_Serif_Bengali } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import Script from "next/script"
 import "./globals.css"
 const notoSerifBengali = Noto_Serif_Bengali({ 
   subsets: ["bengali"],
@@ -149,6 +150,8 @@ export const metadata: Metadata = {
 import { AnalyticsTracker } from "@/components/analytics-tracker"
 import { Suspense } from "react"
 
+const gaId = process.env.NEXT_PUBLIC_GA_ID || "G-3JK9704Q0S"
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -156,6 +159,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="bn">
+      <head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '${gaId}');
+          `}
+        </Script>
+      </head>
       <body className={notoSerifBengali.className}>
         <Suspense fallback={null}>
           <AnalyticsTracker />
